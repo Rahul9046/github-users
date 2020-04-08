@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/header.css';
 
+const PROXY = 'https://cors-anywhere.herokuapp.com/';
 const URL = 'https://api.github.com/search/users?q=';
 const Header = (props)=>{
     let textInput = React.createRef();
@@ -8,7 +9,44 @@ const Header = (props)=>{
     let handleButtonClick = ()=>{
         let query = textInput.current.value;
         // fecth the result and then set the state
-        fetch(`${URL}${query}`).then(res=>res.json()).then(data=>props.handleSearch(data));
+        fetch(`${PROXY}${URL}${query}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'access-control-allow-origin': 'http://localhost:3000'
+              }
+        }).then(res=>res.json()).then((data)=>{
+            if (data.total_count > 30){
+                let totalPages = Math.ceil(data.total_count / 30),
+                    allPages = [],
+                    i;
+                    for (i = 0; i < totalPages; i++){
+                        allPages.push(`&page=${i+1}`); 
+                    }
+                    Promise.all(allPages.map((pageNo)=>{
+                        return  fetch(`${PROXY}${URL}${query}${pageNo}`, {
+                            method: 'GET',
+                            headers: {
+                                'content-type': 'application/json',
+                                'access-control-allow-origin': 'http://localhost:3000'
+                              }
+                        })
+                    })).then((resArr)=>{
+                        resArr = resArr.map(response=>response.json());
+                        Promise.all(resArr).then((dataStream)=>{
+                            let dataArr = [];
+                            for (i = 0; i < dataStream.length; i++){
+                                if (dataStream[i].items){
+                                    dataArr = dataArr.concat(dataStream[i].items);
+                                }
+                            }
+                            props.handleSearch(dataArr)
+                        })
+                    }).catch(err=>console.log(err));
+            } else{
+                props.handleSearch(data.items)
+            }
+        });
     }
     return (
         <div className="header-main-container">

@@ -1,5 +1,27 @@
+.result-display-container:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle; 
+    height: 100%;
+ }
 .search-display-text{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     margin-bottom: 25px;
+    display: inline-block;
+}
+.sort-container{
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 15px;
+}
+.sort-container:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle; 
+    height: 100%;
+ }
+.sort-container>select{
+    margin-left: 5px;
+    font-size: 15px;
 }

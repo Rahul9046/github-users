@@ -12,9 +12,9 @@ class App extends Component {
     }
     this.searchInvoked = false;
   }
-  handleSearch = (res)=>{
+  handleSearch = (items)=>{
     this.searchInvoked = true;
-    this.setState({ users: res.items || []});
+    this.setState({ users: items || []});
   }
   render(){
     let users = this.state.users;
