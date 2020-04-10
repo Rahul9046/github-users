@@ -20,7 +20,9 @@ class App extends Component {
   handleSearch = (items)=>{
     this.searchInvoked = true;
     // sort by user score in ascending at initial render
-    items = items.sort((item1,item2)=>Math.round(item1.score) - Math.round(item2.score))
+    if (items){
+      items = items.sort((item1,item2)=>Math.round(item1.score) - Math.round(item2.score))
+    }
     this.setState({ users: items || []});
   }
   setModalDisplayHandler = (value)=>{
