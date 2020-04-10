@@ -1,6 +1,6 @@
 import React from 'react';
 import UserCard from './user-card.js';
-import '../css/modal.css';
+import '../assets/css/modal.css';
 
 const hideModalStyle = {
     display: 'none'
@@ -29,7 +29,7 @@ const Modal = (props) => {
             return users.map((user)=>{
                 return (
                     <div className="followers-card-container" key={user.id}>
-                        <UserCard avatarURL={user.avatar_url} userName={user.login} height="150px" width="180px"/>
+                        <UserCard avatarURL={user.avatar_url} userName={user.login} height="150px" width="180px" cursor="initial"/>
                     </div>
                 );
             });

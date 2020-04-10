@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import UserCard from './user-card.js';
-import '../css/user.css';
+import '../assets/css/user.css';
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/';
 

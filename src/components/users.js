@@ -1,6 +1,6 @@
 import React from 'react';
 import User from './user.js';
-import '../css/users.css';
+import '../assets/css/users.css';
 
 const Users = (props) => {
    let {showLoaderHandler, setSelectedUserState, users} = props;

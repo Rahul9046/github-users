@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/search-result.css';
+import '../assets/css/search-result.css';
 
 const DESC = 'desc';
 

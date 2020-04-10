@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/loader.css';
-import loader from '../assets/loader.gif'
+import '../assets/css/loader.css';
+import loader from '../assets/images/loader.gif'
 
 const hideLoaderStyle = {
     display: 'none'

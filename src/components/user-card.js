@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const UserCard = (props) => {
-    let { avatarURL, userName, userScore, width, height} = props;
+    let { avatarURL, userName, userScore, width, height, cursor} = props;
     const avatarStyle  = {
         backgroundImage: 'url(' + avatarURL + ')',
         width: '50%',
@@ -13,7 +13,8 @@ const UserCard = (props) => {
       };
       const styleObj = {
         width: width || '300px',
-        height: height || '300px'
+        height: height || '300px',
+        cursor: cursor || 'pointer'
       }
     return (
         <div className="user-card-item" style={styleObj}>

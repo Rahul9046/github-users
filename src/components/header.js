@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/header.css';
+import '../assets/css/header.css';
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/';
 const URL = 'https://api.github.com/search/users?q=';
