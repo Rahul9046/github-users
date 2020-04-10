@@ -3,15 +3,17 @@ import User from './user.js';
 import '../css/users.css';
 
 const Users = (props) => {
+   let {showLoaderHandler, setSelectedUserState, users} = props;
    let handleUserCardClick = (userData)=>{
-        props.setSelectedUserState({
+        setSelectedUserState({
             selectedUser: userData,
             showModal: true
         });
+        showLoaderHandler(false);
     },
-    userList = props.users.map((user)=>{
+    userList = users.map((user)=>{
         return (
-            <User key={user.id} userData={user} handleUserCardClick={handleUserCardClick}/>
+            <User key={user.id} userData={user} handleUserCardClick={handleUserCardClick} showLoaderHandler={showLoaderHandler}/>
         );
     });
     return (

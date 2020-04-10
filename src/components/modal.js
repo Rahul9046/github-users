@@ -20,7 +20,7 @@ const Modal = (props) => {
             return publicRepos.map((repo)=>{
                 return (
                     <div key={repo.id} className="repo-link">
-                        <a href={repo.html_url}>{repo.name}</a>
+                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
                     </div>
                 );
             })

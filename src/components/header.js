@@ -4,11 +4,13 @@ import '../css/header.css';
 const PROXY = 'https://cors-anywhere.herokuapp.com/';
 const URL = 'https://api.github.com/search/users?q=';
 const Header = (props)=>{
+    let {showLoaderHandler, handleSearch} = props;
     let textInput = React.createRef();
     // handler for search button click
     let handleButtonClick = ()=>{
         let query = textInput.current.value;
         // fecth the result and then set the state
+        showLoaderHandler(true);
         fetch(`${PROXY}${URL}${query}`, {
             method: 'GET',
             headers: {
@@ -40,11 +42,13 @@ const Header = (props)=>{
                                     dataArr = dataArr.concat(dataStream[i].items);
                                 }
                             }
-                            props.handleSearch(dataArr)
+                            handleSearch(dataArr);
+                            showLoaderHandler(false);
                         })
                     }).catch(err=>console.log(err));
             } else{
-                props.handleSearch(data.items)
+                handleSearch(data.items);
+                showLoaderHandler(false);
             }
         });
     }

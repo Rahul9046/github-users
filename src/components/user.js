@@ -10,14 +10,15 @@ class User extends Component {
         this.userMetaData = {};
     }
     handleCardClick = async ()=> {
-        let userMetaData =  this.userMetaData,
-            userData = this.props.userData;
+        let {showLoaderHandler, userData, handleUserCardClick} = this.props,
+            userMetaData =  this.userMetaData;
+        showLoaderHandler(true);
         // fetch user meta data asfet mounting
         userMetaData.publicRepos = await fetch(`${PROXY}${userData.repos_url}`).then(res=>res.json()).then(data=>data.filter(repo=>repo.private === false));
         userMetaData.followers = await fetch(`${PROXY}${userData.followers_url}`).then(res=>res.json()).then(data=>data);
         userMetaData.following = await fetch(`${PROXY}${userData.following_url.split('{')[0]}`).then(res=>res.json()).then(data=>data);
         userMetaData.profileInfo = await fetch(`${PROXY}${userData.url}`).then(res=>res.json()).then(data=>data);
-        this.props.handleUserCardClick(userMetaData);
+        handleUserCardClick(userMetaData);
     }
     render(){
         let userData = this.props.userData;
