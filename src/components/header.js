@@ -54,7 +54,6 @@ const Header = (props)=>{
             <div className="search-button" onClick={handleButtonClick}>
                 Search
             </div>
-            <hr className="search-container-divider"/>
          </div>
     );
 }

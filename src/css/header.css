@@ -1,6 +1,5 @@
 .header-main-container{
     text-align: center;
-    padding: 20px 0px;
     height: 10%;
 }
 .header-main-container:before {
@@ -36,6 +35,5 @@
  }
  .search-container-divider{
     width: 60%;
-    margin-top: 25px;
     border: 1px solid black;
  }

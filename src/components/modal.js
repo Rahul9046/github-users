@@ -47,21 +47,21 @@ const Modal = (props) => {
                     <span className="close-button">x</span>
                 </div>
                 <div className="public-repos-container">
-                    <div style={headingStyleObj}>Public Repositories</div>
+                    <div style={headingStyleObj}>Public Repositories({(publicRepos|| []).length})</div>
                     <div className="repo-links-container">
                         {buildRepoDom(publicRepos)}
                     </div>
                     <hr className="modal-dividers"></hr>
                 </div>
                 <div className="followers-container">
-                    <div style={headingStyleObj}>Followers</div>
+                    <div style={headingStyleObj}>Followers({(followers|| []).length})</div>
                     <div className="followers-list">
                         {getUserList(followers)}
                     </div>
                     <hr className="modal-dividers"></hr>    
                 </div>
                 <div className="following-container">
-                    <div style={headingStyleObj}>Following</div>
+                    <div style={headingStyleObj}>Following({(following|| []).length})</div>
                     <div className="followers-list">
                         {getUserList(following)}
                     </div>

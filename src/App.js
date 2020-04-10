@@ -32,6 +32,7 @@ class App extends Component {
     return (
       <div className="App">
           <Header handleSearch={this.handleSearch}/>
+          <hr className="search-container-divider"/>
           <SearchResult users={users} searchInvoked = {this.searchInvoked}/>
           <Users users={users} setSelectedUserState={this.setSelectedUserState}/>
           <Modal showModal = {showModal} selectedUser={selectedUser} setModalDisplayHandler={this.setModalDisplayHandler}/>
