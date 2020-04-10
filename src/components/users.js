@@ -3,9 +3,15 @@ import User from './user.js';
 import '../css/users.css';
 
 const Users = (props) => {
-    let userList = props.users.map((user)=>{
+   let handleUserCardClick = (userData)=>{
+        props.setSelectedUserState({
+            selectedUser: userData,
+            showModal: true
+        });
+    },
+    userList = props.users.map((user)=>{
         return (
-            <User key={user.id} userData={user}/>
+            <User key={user.id} userData={user} handleUserCardClick={handleUserCardClick}/>
         );
     });
     return (

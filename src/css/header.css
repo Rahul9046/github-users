@@ -1,6 +1,7 @@
 .header-main-container{
     text-align: center;
     padding: 20px 0px;
+    height: 10%;
 }
 .header-main-container:before {
     content: ' ';

@@ -1,0 +1,94 @@
+.modal-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(204,204,204,0.6);
+    top: 0px;
+}
+.modal-container:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle; 
+    height: 100%;
+ }
+.modal-content{
+    width: 50%;
+    height: 90%;
+    margin: auto;
+    background-color: white;
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+.modal-dividers{
+    width: 60%;
+    margin-top: 25px;
+    border: 1px solid grey;
+}
+.close-action-container{
+    display: inline-block;
+    width: 100%;
+}
+.close-button{
+    font-size: 25px;
+    color: grey;
+    font-weight: bold;
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.public-repos-container{
+   height: 29%;
+   text-align: start;
+}
+.followers-container{
+   height: 29%;
+   text-align: start;
+}
+.following-container{
+   height: 29%;
+   text-align: start;
+}
+.repo-links-container {
+    overflow-y: scroll;
+    height: 80%;
+    margin-left: 20px;
+}
+.repo-link{
+    margin-top: 5px;
+}
+.repo-link > a{
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.followers-list{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    height: 80%;
+    overflow-y: scroll;
+    text-align: center;
+}
+.profile-info{
+    /* height: 10%; */
+    display: inline-block;
+}
+.profile-info:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle; 
+    height: 100%;
+ }
+.created-at-text{
+    font-size: 16px;
+}
+.admin-flag-text{
+    font-size: 16px;
+    margin-top: 5px;
+}

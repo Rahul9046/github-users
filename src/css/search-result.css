@@ -1,3 +1,6 @@
+.search-result-text-container{
+    height: 5%;
+}
 .result-display-container:before {
     content: ' ';
     display: inline-block;
