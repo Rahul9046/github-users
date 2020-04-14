@@ -1,0 +1,18 @@
+.loader-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(204,204,204,0.3);
+    top: 0px;
+}
+.loader-container:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle; 
+    height: 100%;
+ }
+ .loader-gif{
+     height: 50px;
+     width: 50px;
+     margin: auto;
+ }

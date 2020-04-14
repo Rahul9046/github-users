@@ -1,0 +1,17 @@
+.user-card-item{
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin: 10px;
+    cursor: pointer;
+}
+.user-avatar{
+    border-radius: 50%;
+    margin: 20px auto;
+}
+.username-data{
+    margin: 10px 0px;
+}
+.total-score-data{
+    margin: 10px 0px;
+}

@@ -1,0 +1,9 @@
+.users-container{
+    width: 1000px;
+    height: 85%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    overflow-y: scroll;
+}
