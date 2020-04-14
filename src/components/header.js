@@ -3,54 +3,41 @@ import '../assets/css/header.css';
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/';
 const URL = 'https://api.github.com/search/users?q=';
+const PER_PAGE = '&per_page=100';
 const Header = (props)=>{
-    let {showLoaderHandler, handleSearch} = props;
-    let textInput = React.createRef();
+    let {showLoaderHandler, handleSearch, cache} = props;
+    let textInput = React.createRef(), cacheData;
     // handler for search button click
     let handleButtonClick = ()=>{
         let query = textInput.current.value;
-        // fecth the result and then set the state
         showLoaderHandler(true);
-        fetch(`${PROXY}${URL}${query}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'access-control-allow-origin': 'http://localhost:3000'
-              }
-        }).then(res=>res.json()).then((data)=>{
-            if (data.total_count > 30){
-                let totalPages = Math.ceil(data.total_count / 30),
-                    allPages = [],
-                    i;
-                    for (i = 0; i < totalPages; i++){
-                        allPages.push(`&page=${i+1}`); 
-                    }
-                    Promise.all(allPages.map((pageNo)=>{
-                        return  fetch(`${PROXY}${URL}${query}${pageNo}`, {
-                            method: 'GET',
-                            headers: {
-                                'content-type': 'application/json',
-                                'access-control-allow-origin': 'http://localhost:3000'
-                              }
-                        })
-                    })).then((resArr)=>{
-                        resArr = resArr.map(response=>response.json());
-                        Promise.all(resArr).then((dataStream)=>{
-                            let dataArr = [];
-                            for (i = 0; i < dataStream.length; i++){
-                                if (dataStream[i].items){
-                                    dataArr = dataArr.concat(dataStream[i].items);
-                                }
-                            }
-                            handleSearch(dataArr);
-                            showLoaderHandler(false);
-                        })
-                    }).catch(err=>console.log(err));
-            } else{
-                handleSearch(data.items);
+        if (!(cacheData = cache[query])){
+            // fecth the result and then set the state
+            fetch(`${PROXY}${URL}${query}${PER_PAGE}`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    'access-control-allow-origin': 'http://localhost:3000'
+                }
+            }).then((res)=>{
+                // if the status code is 403, that means that the APi usage limit has exceeded
+                if (res.status === 403) {
+                    throw new Error('Rate limit exceeded. Please try after some time');
+                }
+                return res.json();
+            }).then((data)=>{
+                    cache[query] = data;
+                    handleSearch(data.items);
+            }).catch((err)=>{
+                console.log(err);
+
+            }).finally(()=>{
                 showLoaderHandler(false);
-            }
-        });
+            });
+        } else{
+            handleSearch(cacheData.items);
+            showLoaderHandler(false);
+        }
     }
     return (
         <div className="header-main-container">

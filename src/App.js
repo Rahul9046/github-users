@@ -16,6 +16,8 @@ class App extends Component {
       selectedUser: undefined
     }
     this.searchInvoked = false;
+    // cache to store user searches
+    this.cache = {};
   }
   handleSearch = (items)=>{
     this.searchInvoked = true;
@@ -43,7 +45,7 @@ class App extends Component {
     let {users, showModal, selectedUser, showLoader} = this.state;
     return (
       <div className="App">
-          <Header handleSearch={this.handleSearch} showLoaderHandler={this.showLoaderHandler}/>
+          <Header handleSearch={this.handleSearch} showLoaderHandler={this.showLoaderHandler} cache = {this.cache}/>
           <hr className="search-container-divider"/>
           <SearchResult users={users} searchInvoked = {this.searchInvoked} setSortedUsers={this.setSortedUsers}/>
           <Users users={users} setSelectedUserState={this.setSelectedUserState} showLoaderHandler={this.showLoaderHandler}/>
